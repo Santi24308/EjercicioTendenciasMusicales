@@ -1,0 +1,73 @@
+@startuml
+
+class Cancion{
+    -popularidad : Popularidad
+    -detalle : String
+    -reproducciones : int
+    -artista : Artista
+    -album : Album
+    -titulo : String
+    -likes : int
+    -dislikes : int
+    -ultimaReproduccion : LocalDateTime
+
+    -resetearAtributos() : void
+    -setPopularidad(popularidad : Popularidad) : void
+    -chequearPopularidad() : void
+
+    +getPopularidad() : Popularidad
+    +reproducir() : void
+    +likear() : void
+    +dislikear() : void
+
+
+}
+
+Cancion --> Artista
+class Artista{
+    -nombre : String
+    -apellido : String
+}
+
+Cancion --> Album
+class Album{
+    -titulo : String
+    -fechaLanzamiento : LocalDateTime
+}
+
+Cancion *-- Popularidad
+
+abstract class Popularidad {
+    #formato(Cancion cancion) : String
+}
+
+class Normal extends Popularidad {
+    -icono : Icono
+
+    -formato(Cancion cancion) : String
+    +leyenda() : String
+    +cumpleCondicionDePopularidad(Cancion cancion) : boolean
+
+}
+
+class enAuge extends Popularidad {
+    -icono : Icono
+
+    -formato(Cancion cancion) : String
+    +leyenda() : String
+    +cumpleCondicionDePopularidad(Cancion cancion) : boolean
+
+
+}
+
+class enTendencia extends Popularidad {
+    -icono : Icono
+
+    -formato(Cancion cancion) : String
+    +leyenda() : String
+    +cumpleCondicionDePopularidad(Cancion cancion) : boolean
+
+
+}
+
+@enduml
